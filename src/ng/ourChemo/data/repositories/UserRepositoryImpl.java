@@ -9,13 +9,14 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public long count() {
-        long count = 0;
-        return ++count;
+        long count =  users.size();
+        return count;
     }
 
     @Override
-    public void save(User user) {
+    public String save(User user) {
         users.add(user);
+        return "User saved successfully";
     }
 
     @Override
@@ -27,6 +28,41 @@ public class UserRepositoryImpl implements UserRepository {
             }
         }
         return null;
+    }
+
+    @Override
+    public void saveNewUser(User newUser) {
+        for(User user : users){
+            if (user.getUsername().equals(newUser.getUsername()))   {
+                System.out.println("User already exists");
+                return;
+            }
+        }
+        save(newUser);
+    }
+
+    @Override
+    public void delete(User user) {
+        User foundUser = findByUsername(user.getUsername());
+        users.remove(foundUser);
+    }
+
+    @Override
+    public void clearAll() {
+       while(!users.isEmpty()){
+           delete(users.get(0));
+        }
+    }
+
+    @Override
+    public User findById(int userId) {
+        User foundUser = null;
+        for (User user : users) {
+            if (user.getUserId() == userId) {
+                foundUser = user;
+            }
+        }
+            return foundUser;
     }
 
 
