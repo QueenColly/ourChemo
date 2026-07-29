@@ -9,7 +9,7 @@ public class DispensedDrugs {
     private LocalDateTime dispensedDateTime;
     private int dispensedDrugsId;
 
-    public  DispensedDrugs(User dispensedBy, LocalDateTime dispensedDateTime, int dispensedDrugsId){
+    public  DispensedDrugs(){
         this.dispensedBy = dispensedBy;
         this.dispensedDateTime = dispensedDateTime;
         this.dispensedDrugsId = dispensedDrugsId;

@@ -1,6 +1,5 @@
 package ng.ourChemo.services;
 
-import ng.ourChemo.data.models.User;
 import ng.ourChemo.data.repositories.UserRepository;
 import ng.ourChemo.data.repositories.UserRepositoryImpl;
 import ng.ourChemo.dtos.requests.RegisterUserRequest;

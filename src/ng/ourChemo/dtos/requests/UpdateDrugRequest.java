@@ -1,16 +1,17 @@
 package ng.ourChemo.dtos.requests;
 
-public class AddDrugRequest {
-    private String brand;
+public class UpdateDrugRequest {
+    private int drugId;
     private String name;
+    private String brand;
     private int price;
 
-    public int getPrice() {
-        return price;
+    public int getDrugId() {
+        return drugId;
     }
 
-    public void setPrice(int price) {
-        this.price = price;
+    public void setDrugId(int drugId) {
+        this.drugId = drugId;
     }
 
     public String getName() {
@@ -27,5 +28,13 @@ public class AddDrugRequest {
 
     public void setBrand(String brand) {
         this.brand = brand;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 }

@@ -4,7 +4,7 @@ import ng.ourChemo.data.models.User;
 
 public interface UserRepository {
     long count();
-    String save(User user);
+    User save(User user);
     User findByUsername(String userName);
 
     void saveNewUser(User newUser);
@@ -14,4 +14,8 @@ public interface UserRepository {
     void clearAll();
 
     User findById(int userId);
+
+    void deleteById(int userTwoId);
+
+    void updateExisting(User user);
 }

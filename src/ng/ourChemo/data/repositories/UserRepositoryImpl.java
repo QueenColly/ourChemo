@@ -5,18 +5,24 @@ import ng.ourChemo.data.models.User;
 import java.util.ArrayList;
 
 public class UserRepositoryImpl implements UserRepository {
-    ArrayList<User> users = new ArrayList<>();
+   private  ArrayList<User> users = new ArrayList<>();
+   private  int count = 0;
 
     @Override
     public long count() {
-        long count =  users.size();
-        return count;
+        return users.size();
     }
 
     @Override
-    public String save(User user) {
+    public User save(User user) {
+        if(user.getUserId()!=0){
+            users.remove(user.getUserId()-1);
+            users.add(user.getUserId()-1,user);
+            return user;
+        }
+        user.setUserId(++count);
         users.add(user);
-        return "User saved successfully";
+        return user;
     }
 
     @Override
@@ -45,12 +51,13 @@ public class UserRepositoryImpl implements UserRepository {
     public void delete(User user) {
         User foundUser = findByUsername(user.getUsername());
         users.remove(foundUser);
+        --count;
     }
 
     @Override
     public void clearAll() {
        while(!users.isEmpty()){
-           delete(users.get(0));
+          users.clear();
         }
     }
 
@@ -63,6 +70,23 @@ public class UserRepositoryImpl implements UserRepository {
             }
         }
             return foundUser;
+    }
+
+    @Override
+    public void deleteById(int userTwoId) {
+        User foundUser = findById(userTwoId);
+        users.remove(foundUser);
+    }
+
+    @Override
+    public void updateExisting(User user) {
+        User foundUser = findById(user.getUserId());
+
+        foundUser.setFullname(user.getFullname());
+        foundUser.setUsername(user.getUsername());
+        foundUser.setPassword(user.getPassword());
+
+        save(foundUser);
     }
 
 
